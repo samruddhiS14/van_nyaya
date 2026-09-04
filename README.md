@@ -1,120 +1,109 @@
-# Van Nyaya (वन न्याय) — National AI Decision-Support & FRA Land Rights Grid
+# Van-Nyaya: AI Decision-Support & FRA Land Rights Grid
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React%2018-TypeScript-61DAFB?style=flat&logo=react)](https://react.dev/)
-[![XGBoost](https://img.shields.io/badge/XGBoost-Tabular%20ML-EB5424)](https://xgboost.readthedocs.io/)
-[![SHAP](https://img.shields.io/badge/SHAP-Explainable%20AI-FF6F00)](https://shap.readthedocs.io/)
-[![GeoPandas](https://img.shields.io/badge/GeoPandas-Spatial%20Engine-139C5A)](https://geopandas.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-**Van Nyaya** is an enterprise AI decision-support platform engineered to accelerate the verification, spatial auditing, and human-in-the-loop validation of land claims submitted under the Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006 (FRA).
-
-By combining historical satellite telemetry, automated GIS boundary intersection checks, supervised anomaly screening, local SHAP attribution, and statutory compliance tracking, Van Nyaya protects legitimate tribal forest rights while preventing arbitrary procedural rejections.
+A comprehensive Decision Support System (DSS), Machine Learning Anomaly Detection, and Geospatial Verification platform for the Forest Rights Act (FRA, 2006). This application integrates archival satellite imagery, automated boundary overlap telemetry, supervised tabular risk scoring, transparent rejection justifications, and grounded natural-language summaries to empower district verification committees.
 
 ---
 
-## Core MVP Pillars & Legal Differentiators
+## 🌳 Overview
 
-Most digitization systems treat FRA as standard contemporary land registry mapping and dismiss rejected records into silent database graves. Van Nyaya enforces the statutory core of the Act:
-
-### 1. Pre-Cutoff (Dec 13, 2005) Historical Land Verification
-* **The Overlooked Problem:** Typical platforms look only at present-day spatial polygons. Under the FRA, claimants must establish physical occupation/cultivation prior to December 13, 2005 (or 75 years / 3 generations for Other Traditional Forest Dwellers / OTFD).
-* **The Van Nyaya Solution:** Ingests and compares historical satellite telemetry (Landsat/Sentinel archival imagery pre-2005 vs. contemporary basemaps) against claim boundaries to prove genuine historical cultivation and distinguish historical forest dwelling from fresh encroachments.
-
-### 2. Transparent Rejection Justifications & 90-Day Appeal Tracking
-* **The Overlooked Problem:** Review portals classify records as "Rejected" and terminate the workflow, causing silent administrative rejections without notice to tribal claimants.
-* **The Van Nyaya Solution:** The FRA explicitly mandates that the Sub-Divisional Level Committee (SDLC) or District Level Committee (DLC) provide a formal, written statement of reasons for any rejection. Van Nyaya enforces an audit trail logging mandatory written grounds, generates formal claimant notices, and initiates an active 90-day statutory appeal window counter with automated escalation warnings.
+Van-Nyaya is designed to support forest rights claimants, gram sabhas, and government verification committees in:
+* **Geospatial Claim Validation:** Automatically checking submitted claims against cadastral maps, forest reserves, and adjacent plots.
+* **Pre-2005 Cutoff Verification:** Ingesting historical satellite data to verify land occupation/cultivation prior to the statutory December 13, 2005 cutoff.
+* **Trained ML Anomaly Detection:** Flagging structural inconsistencies, area mismatches, and multi-claim duplicates using supervised XGBoost/LightGBM models[cite: 1].
+* **Explainable AI (XAI):** Decomposing risk factors into clear, human-readable contributions using SHAP attribution[cite: 1].
+* **Transparent Rejections & Appeals:** Enforcing mandatory written justifications for any claim rejection, backed by an automated 90-day statutory appeal window tracking desk.
+* **Document OCR Processing:** Extracting structured parameters from physical claim applications (Form A/B), voter IDs, and Gram Sabha resolutions[cite: 1].
 
 ---
 
-## Key Features
+## 📁 Project Structure
 
-* **Pre-2005 Temporal Spatial Verification:** Historical satellite raster processing to confirm historical agricultural clearing or dwelling prior to the statutory cutoff date.
-* **Supervised Anomaly Screening:** Gradient-boosted classifiers trained on cross-source features to flag unusual structural anomalies across area declarations, survey records, and family claim histories[cite: 1].
-* **Local SHAP Attribution:** Granular XAI decomposition pinpointing exactly which factors (e.g., spatial overlap percentage, area mismatch) influenced the model risk score[cite: 1].
-* **GIS Cadastral Twin:** Automated calculation of claimed versus satellite-derived polygon areas, self-intersection tests, and boundary overlap metrics against protected zones and neighboring claims[cite: 1].
-* **Rejection Justification & Appeal Desk:** Mandatory structured justification capture on rejections with automated 90-day statutory appeal window tracking and dispatch logs.
-* **Document OCR Engine:** Optical text and table extraction across physical Form A/B applications, revenue records, and Gram Sabha resolutions to compute documentary consistency scores[cite: 1].
-* **Interactive Official Review Dashboard:** Role-based portal featuring split-screen cadastral maps, interactive SHAP force bars, document inspection panels, and one-click audit feedback capture[cite: 1].
-
----
-
-## Tech Stack & Architecture
-
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Frontend & UX** | `React 18`, `TypeScript`, `Tailwind CSS`, `Lucide Icons` | Officer verification portal, multi-claim review dashboard, dynamic risk indicators, and appeal desk[cite: 1]. |
-| **Spatial & Interactive Maps** | `Leaflet`, `React-Leaflet`, `Landsat/Sentinel API` | Dual-layer cadastral boundary viewer, temporal satellite comparison (pre-2005 vs. present), and survey demarcations[cite: 1]. |
-| **Backend Gateway** | `FastAPI`, `Uvicorn`, `Pydantic v2` | High-throughput asynchronous REST gateway, schema validation, appeal lifecycle timers, and inter-service routing[cite: 1]. |
-| **Machine Learning Core** | `XGBoost`, `Scikit-Learn`, `LightGBM`, `Joblib` | Supervised anomaly risk probability estimation and tabular claim classification pipelines[cite: 1]. |
-| **Explainable AI (XAI)** | `SHAP (TreeExplainer)`, `NumPy` | Local feature attribution, Shapley value calculations, and quantitative risk decomposition[cite: 1]. |
-| **Spatial & GIS Engine** | `GeoPandas`, `Shapely`, `Rasterio`, `PyProj` | Boundary polygon validation, raster temporal comparisons, CRS coordinate transformations, and spatial intersections[cite: 1]. |
-| **Document Processing** | `PyMuPDF`, `PaddleOCR / Tesseract` | Scanned document intake, multi-page text extraction, and cross-source field matching[cite: 1]. |
-| **Database & Persistence** | `SQLAlchemy 2.0`, `PostgreSQL / PostGIS` (SQLite dev) | Relational claim storage, spatial boundary indices, appeal tracking ledgers, and officer audit logs[cite: 1]. |
-
----
-
-### Badges & Tools
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)
-
----
-
-## Repository Structure
-
-```text
 fra-ai-system/
-├── frontend/                     # Official portal user interface (React + TypeScript)[cite: 1]
-│   ├── public/                   # Static icons, map markers, and government emblems
+├── frontend/                     # Official React + TypeScript review dashboard
 │   ├── src/
-│   │   ├── assets/               # Branding assets, vector logos, and base icons
-│   │   ├── components/           # Reusable UI widgets[cite: 1]
-│   │   │   ├── common/           # Navbar, Sidebar, StatCard, LoadingSkeleton
-│   │   │   ├── map/              # Leaflet GIS viewer, OverlapLayer, HistoricalSatelliteSlider
-│   │   │   ├── audit/            # RiskBandBadge, SHAPBarChart, GroundedSummaryCard
-│   │   │   ├── appeals/          # AppealCountdownClock, WrittenReasonModal, EscalationBanner
-│   │   │   └── documents/        # DocumentViewer, OCRExtractPanel, EvidenceInspector
-│   │   ├── pages/                # High-level route views[cite: 1]
-│   │   │   ├── Dashboard.tsx     # District triage queue, status filters, appeal deadlines
-│   │   │   ├── ClaimReview.tsx   # Split map (pre-2005 vs today), ML anomaly assessment, evidence
-│   │   │   ├── Rejections.tsx    # Formal written reasons, 90-day tracker, claimant dispatch logs
-│   │   │   └── FeedbackLogs.tsx  # Historical officer determinations and model audit logs
-│   │   ├── services/             # API client bridge (Axios hooks for backend & ML proxy)[cite: 1]
-│   │   ├── hooks/                # Custom React hooks (useClaims, useSpatialLayer, useAppeals)[cite: 1]
-│   │   ├── types/                # Strict TypeScript interfaces matching backend Pydantic schemas[cite: 1]
-│   │   ├── utils/                # Coordinate conversions, date formatters, geo-calc helpers[cite: 1]
-│   │   ├── App.tsx               # Root app layout, route router, and notification toaster
-│   │   └── main.tsx              # React entry point and CSS bundle mounting
-│   ├── package.json              # Frontend npm packages and Vite dependencies
-│   ├── tsconfig.json             # TypeScript project compiler configuration
-│   └── vite.config.ts            # Vite bundling settings and proxy route configuration
-│
-├── backend/                      # Orchestration & business logic gateway (Port 5000)[cite: 1]
+│   │   ├── components/           # Reusable UI elements (Map, Badges, Modals)
+│   │   │   ├── map/              # Leaflet GIS viewer & historical satellite layer
+│   │   │   ├── audit/            # SHAP bar chart, risk band badges, evidence panels
+│   │   │   └── appeals/          # 90-day appeal countdown timers & justification forms
+│   │   ├── pages/                # High-level screens (Dashboard, ClaimReview, Rejections)
+│   │   ├── services/             # Axios API services for backend communication
+│   │   └── types/                # TypeScript interfaces matching backend models
+│   ├── public/                   # Static assets & sample GeoJSON boundaries
+│   └── package.json
+├── backend/                      # FastAPI orchestration gateway (Port 5000)
 │   ├── app/
-│   │   ├── api/                  # REST routes (auth, claims, documents, GIS, AI, appeals, feedback)[cite: 1]
-│   │   ├── database/             # Connection pooling, migrations, and seed scripts[cite: 1]
-│   │   ├── models/               # SQLAlchemy models (User, Claim, Prediction, Appeal, Feedback)[cite: 1]
-│   │   ├── schemas/              # Pydantic v2 schemas (Claim, RejectionReason, AppealPayload)[cite: 1]
-│   │   ├── services/             # Domain logic (GIS, pre-2005 raster service, appeal manager)[cite: 1]
-│   │   └── main.py               # Gateway entrypoint & middleware configuration[cite: 1]
-│   └── requirements.txt          # Gateway Python dependencies[cite: 1]
-│
-├── ml/                           # Dedicated ML inference & explainability microservice (Port 8000)[cite: 1]
-│   ├── artifacts/                # Encoders, scalers, and evaluation metric snapshots[cite: 1]
-│   ├── configs/                  # Model hyperparameters and feature schemas[cite: 1]
-│   ├── data/                     # Raw, interim, and processed training matrices[cite: 1]
-│   ├── models/                   # Versioned serialized model binaries (.joblib)[cite: 1]
-│   ├── src/                      # ML pipelines (ingestion, features, train, explain, predict)[cite: 1]
-│   └── requirements.txt          # ML service dependencies[cite: 1]
-│
-├── tests/                        # Automated integration and API test suite[cite: 1]
-├── docker-compose.yml            # Multi-service container specification[cite: 1]
+│   │   ├── api/                  # REST endpoints (auth, claims, gis, ai, documents)
+│   │   ├── database/             # SQLite/PostGIS connection, models, and seeders
+│   │   ├── models/               # SQLAlchemy entities (User, Claim, Prediction, Feedback)
+│   │   ├── schemas/              # Pydantic input/output validation contracts
+│   │   ├── services/             # GIS intersection logic, OCR parsing, & ML proxy
+│   │   └── main.py               # Application entrypoint & middleware
+│   └── requirements.txt
+├── ml/                           # Dedicated ML & XAI microservice (Port 8000)
+│   ├── src/                      # Feature pipeline, model training, SHAP & prediction
+│   ├── models/                   # Serialized ML binaries (.joblib)
+│   ├── data/                     # Raw, interim, and processed feature CSVs
+│   └── requirements.txt
+├── tests/                        # Integration and automated endpoint tests
 ├── run_all.sh                    # Dual-service concurrent runner
-└── .gitignore                    # Ignored cache, models, node_modules & environment files[cite: 1]
+└── docker-compose.yml            # Multi-service container spec
+
+---
+
+## 🚀 Key Features
+
+### 1. Pre-2005 Temporal Spatial Verification
+* Compares historical satellite telemetry (Landsat/Sentinel archival imagery pre-2005 vs. present basemaps) against claim boundaries.
+* Confirms historical agricultural clearing or dwelling prior to the statutory December 13, 2005 cutoff date.
+* Differentiates long-term traditional forest dwelling from fresh post-cutoff encroachments.
+
+### 2. Transparent Rejection Justifications & 90-Day Appeal Tracker
+* Prevents silent, arbitrary rejections by enforcing written reasons from the Sub-Divisional (SDLC) or District Level Committee (DLC).
+* Generates formal, downloadable rejection notices for claimants.
+* Automatically triggers an active 90-day statutory appeal countdown with tracking alerts for district committees.
+
+### 3. Supervised ML Anomaly Detection & SHAP Attribution
+* Evaluates cross-source signals: claimed vs. GIS surface area discrepancy, spatial overlap percentages, document completeness, and applicant history[cite: 1].
+* Predicts an overall risk score and maps claims into `LOW`, `MEDIUM`, or `HIGH` risk bands[cite: 1].
+* Employs SHAP (SHapley Additive exPlanations) to isolate positive and negative factor contributions for complete transparency[cite: 1].
+
+### 4. Interactive WebGIS & Boundary Analysis
+* Multi-layer interactive map showing village boundaries, cadastre lines, and forest reserves[cite: 1].
+* Computes real-time polygon intersections and geometric overlap percentages[cite: 1].
+* Evaluates polygon validity, vertex anomalies, and self-intersections[cite: 1].
+
+### 5. Document Processing & OCR
+* Scans uploaded PDFs, PNGs, and JPEGs of claim forms and certificates[cite: 1].
+* Extracts names, survey numbers, and stated areas via OCR[cite: 1].
+* Runs fuzzy cross-source consistency checks between physical paperwork and digital registry records[cite: 1].
+
+### 6. Grounded AI Claim Summaries
+* Generates structured natural language briefs strictly derived from verified parameters[cite: 1].
+* Formats clear evidence panels for quick inspection by government review officers[cite: 1].
+* Captures officer verification determinations to continuously improve model performance[cite: 1].
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend UI:** React 18, TypeScript, Tailwind CSS, Lucide Icons[cite: 1]
+* **Geospatial & Maps:** Leaflet, GeoPandas, Shapely, GeoJSON[cite: 1]
+* **Backend API Gateway:** FastAPI (Python 3.11+), Uvicorn, Pydantic v2[cite: 1]
+* **Database & ORM:** SQLAlchemy 2.0, SQLite (Dev), PostgreSQL + PostGIS (Prod)[cite: 1]
+* **Machine Learning:** Scikit-Learn, XGBoost, LightGBM, Pandas, NumPy[cite: 1]
+* **Explainable AI (XAI):** SHAP (TreeExplainer)[cite: 1]
+* **Document Processing:** PyMuPDF, PaddleOCR / Tesseract[cite: 1]
+
+---
+
+## 📦 Installation & Setup
+
+### Prerequisites
+* Python 3.9+ (Python 3.11 recommended)[cite: 1]
+* Node.js 18+ (for frontend)
+* Git[cite: 1]
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/samruddhiS14/van_nyaya.git](https://github.com/samruddhiS14/van_nyaya.git)
+cd van_nyaya
