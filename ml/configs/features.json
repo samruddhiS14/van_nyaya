@@ -1,0 +1,18 @@
+{
+  "target": "is_anomaly",
+  "id_columns": ["claim_id", "claimant_id"],
+  "numeric_features": [
+    "claimed_area",
+    "gis_area",
+    "area_diff_pct",
+    "overlap_pct",
+    "overlapping_claims_count",
+    "name_similarity_score",
+    "missing_doc_count",
+    "historical_claim_count"
+  ],
+  "categorical_features": [
+    "claim_type",
+    "survey_number_matched"
+  ]
+}

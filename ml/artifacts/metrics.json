@@ -1,0 +1,20 @@
+{
+  "mean_cv_roc_auc": 1.0,
+  "mean_cv_pr_auc": 1.0,
+  "total_samples": 1000,
+  "anomaly_ratio": 0.118,
+  "feature_names": [
+    "claimed_area",
+    "gis_area",
+    "area_diff_pct",
+    "overlap_pct",
+    "overlapping_claims_count",
+    "name_similarity_score",
+    "missing_doc_count",
+    "historical_claim_count",
+    "claim_type_CFR",
+    "claim_type_IFR",
+    "survey_number_matched_NO",
+    "survey_number_matched_YES"
+  ]
+}
