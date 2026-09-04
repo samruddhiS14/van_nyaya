@@ -86,13 +86,15 @@ fra-ai-system/
 
 ## 🛠️ Technology Stack
 
-* **Frontend UI:** React 18, TypeScript, Tailwind CSS, Lucide Icons[cite: 1]
-* **Geospatial & Maps:** Leaflet, GeoPandas, Shapely, GeoJSON[cite: 1]
-* **Backend API Gateway:** FastAPI (Python 3.11+), Uvicorn, Pydantic v2[cite: 1]
-* **Database & ORM:** SQLAlchemy 2.0, SQLite (Dev), PostgreSQL + PostGIS (Prod)[cite: 1]
-* **Machine Learning:** Scikit-Learn, XGBoost, LightGBM, Pandas, NumPy[cite: 1]
-* **Explainable AI (XAI):** SHAP (TreeExplainer)[cite: 1]
-* **Document Processing:** PyMuPDF, PaddleOCR / Tesseract[cite: 1]
+| Layer | Technologies | Purpose |
+| :--- | :--- | :--- |
+| **Frontend UI**[cite: 1] | React 18, TypeScript, Tailwind CSS, Lucide Icons[cite: 1] | Officer review portal, triage queues, audit dashboards, and appeal tracking desk[cite: 1] |
+| **Geospatial & Maps**[cite: 1] | Leaflet, React-Leaflet, GeoPandas, Shapely, GeoJSON[cite: 1] | Multi-layer cadastral boundary rendering, overlap analysis, and coordinate verification[cite: 1] |
+| **Backend API Gateway**[cite: 1] | FastAPI, Python 3.11+, Uvicorn, Pydantic v2[cite: 1] | Asynchronous orchestration, strict schema validation, and inter-service proxy routing[cite: 1] |
+| **Database & ORM**[cite: 1] | SQLAlchemy 2.0, SQLite (Dev), PostgreSQL + PostGIS (Prod)[cite: 1] | Relational claims storage, spatial indices, appeal ledgers, and officer audit logging[cite: 1] |
+| **Machine Learning Core**[cite: 1] | Scikit-Learn, XGBoost, LightGBM, Pandas, NumPy[cite: 1] | Supervised tabular anomaly scoring, class imbalance handling, and risk band classification[cite: 1] |
+| **Explainable AI (XAI)**[cite: 1] | SHAP (TreeExplainer, KernelExplainer)[cite: 1] | Granular feature attribution and positive/negative contribution decomposition[cite: 1] |
+| **Document Processing**[cite: 1] | PyMuPDF, PaddleOCR / Tesseract[cite: 1] | Scanned document intake, multi-page text extraction, and cross-source field matching[cite: 1] |
 
 ---
 
