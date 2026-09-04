@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "claimant": "Babulal Kol",
+        "survey_type": "Perimeter Traversal",
+        "flag": "Reserve Core Proximity"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.972, 23.111],
+            [76.978, 23.111],
+            [76.978, 23.117],
+            [76.972, 23.117],
+            [76.972, 23.111]
+          ]
+        ]
+      }
+    }
+  ]
+}

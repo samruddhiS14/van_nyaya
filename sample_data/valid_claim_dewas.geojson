@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "claimant": "Ganga Ram Korku",
+        "survey_type": "Handheld GPS Survey",
+        "crop_type": "Kharif Traditional Cultivation"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.991, 23.131],
+            [76.996, 23.131],
+            [76.996, 23.136],
+            [76.991, 23.136],
+            [76.991, 23.131]
+          ]
+        ]
+      }
+    }
+  ]
+}
