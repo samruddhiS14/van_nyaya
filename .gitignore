@@ -1,18 +1,13 @@
-# Dependencies
 node_modules/
 frontend/node_modules/
 backend/venv/
 venv/
 __pycache__/
 *.pyc
-
-# Local DB & System artifacts
 *.db
 *.sqlite3
 backend/fra_portal.db
 .DS_Store
 *.local
-
-# Build artifacts
 dist/
 frontend/dist/
