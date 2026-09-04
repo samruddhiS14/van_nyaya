@@ -18,36 +18,36 @@ Van-Nyaya is designed to support forest rights claimants, gram sabhas, and gover
 
 ## 📁 Project Structure
 
+```text
 fra-ai-system/
-├── frontend/                     # Official React + TypeScript review dashboard
+├── frontend/
 │   ├── src/
-│   │   ├── components/           # Reusable UI elements (Map, Badges, Modals)
-│   │   │   ├── map/              # Leaflet GIS viewer & historical satellite layer
-│   │   │   ├── audit/            # SHAP bar chart, risk band badges, evidence panels
-│   │   │   └── appeals/          # 90-day appeal countdown timers & justification forms
-│   │   ├── pages/                # High-level screens (Dashboard, ClaimReview, Rejections)
-│   │   ├── services/             # Axios API services for backend communication
-│   │   └── types/                # TypeScript interfaces matching backend models
-│   ├── public/                   # Static assets & sample GeoJSON boundaries
+│   │   ├── components/
+│   │   │   ├── map/
+│   │   │   ├── audit/
+│   │   │   └── appeals/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── types/
+│   ├── public/
 │   └── package.json
-├── backend/                      # FastAPI orchestration gateway (Port 5000)
+├── backend/
 │   ├── app/
-│   │   ├── api/                  # REST endpoints (auth, claims, gis, ai, documents)
-│   │   ├── database/             # SQLite/PostGIS connection, models, and seeders
-│   │   ├── models/               # SQLAlchemy entities (User, Claim, Prediction, Feedback)
-│   │   ├── schemas/              # Pydantic input/output validation contracts
-│   │   ├── services/             # GIS intersection logic, OCR parsing, & ML proxy
-│   │   └── main.py               # Application entrypoint & middleware
+│   │   ├── api/
+│   │   ├── database/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── main.py
 │   └── requirements.txt
-├── ml/                           # Dedicated ML & XAI microservice (Port 8000)
-│   ├── src/                      # Feature pipeline, model training, SHAP & prediction
-│   ├── models/                   # Serialized ML binaries (.joblib)
-│   ├── data/                     # Raw, interim, and processed feature CSVs
+├── ml/
+│   ├── src/
+│   ├── models/
+│   ├── data/
 │   └── requirements.txt
-├── tests/                        # Integration and automated endpoint tests
-├── run_all.sh                    # Dual-service concurrent runner
-└── docker-compose.yml            # Multi-service container spec
-
+├── tests/
+├── run_all.sh
+└── docker-compose.yml
 ---
 
 ## 🚀 Key Features
