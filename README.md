@@ -1,5 +1,12 @@
 # Van-Nyaya: AI Decision-Support & FRA Land Rights Grid
 
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React%2018-TypeScript-61DAFB?style=flat&logo=react)](https://react.dev/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-Tabular%20ML-EB5424)](https://xgboost.readthedocs.io/)
+[![SHAP](https://img.shields.io/badge/SHAP-Explainable%20AI-FF6F00)](https://shap.readthedocs.io/)
+[![GeoPandas](https://img.shields.io/badge/GeoPandas-Spatial%20Engine-139C5A)](https://geopandas.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A comprehensive Decision Support System (DSS), Machine Learning Anomaly Detection, and Geospatial Verification platform for the Forest Rights Act (FRA, 2006). This application integrates archival satellite imagery, automated boundary overlap telemetry, supervised tabular risk scoring, transparent rejection justifications, and grounded natural-language summaries to empower district verification committees.
 
 ---
