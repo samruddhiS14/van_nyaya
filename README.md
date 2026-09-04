@@ -7,17 +7,33 @@
 [![GeoPandas](https://img.shields.io/badge/GeoPandas-Spatial%20Engine-139C5A)](https://geopandas.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Van Nyaya** is an enterprise AI decision-support platform engineered to accelerate the verification, spatial auditing, and human-in-the-loop validation of land claims submitted under the Scheduled Tribes and Other Traditional Forest Dwellers (Forest Rights Act / FRA).
+**Van Nyaya** is an enterprise AI decision-support platform engineered to accelerate the verification, spatial auditing, and human-in-the-loop validation of land claims submitted under the Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006 (FRA).
 
-By combining automated GIS boundary intersection telemetry, supervised gradient-boosted anomaly screening, local SHAP feature attribution, and evidence-grounded summarization, Van Nyaya identifies boundary overlaps and documentary discrepancies while leaving legal determinations to authorized district officials.
+By combining historical satellite telemetry, automated GIS boundary intersection checks, supervised anomaly screening, local SHAP attribution, and statutory compliance tracking, Van Nyaya protects legitimate tribal forest rights while preventing arbitrary procedural rejections.
+
+---
+
+## Core MVP Pillars & Legal Differentiators
+
+Most digitization systems treat FRA as standard contemporary land registry mapping and dismiss rejected records into silent database graves. Van Nyaya enforces the statutory core of the Act:
+
+### 1. Pre-Cutoff (Dec 13, 2005) Historical Land Verification
+* **The Overlooked Problem:** Typical platforms look only at present-day spatial polygons. Under the FRA, claimants must establish physical occupation/cultivation prior to December 13, 2005 (or 75 years / 3 generations for Other Traditional Forest Dwellers / OTFD).
+* **The Van Nyaya Solution:** Ingests and compares historical satellite telemetry (Landsat/Sentinel archival imagery pre-2005 vs. contemporary basemaps) against claim boundaries to prove genuine historical cultivation and distinguish historical forest dwelling from fresh encroachments.
+
+### 2. Transparent Rejection Justifications & 90-Day Appeal Tracking
+* **The Overlooked Problem:** Review portals classify records as "Rejected" and terminate the workflow, causing silent administrative rejections without notice to tribal claimants.
+* **The Van Nyaya Solution:** The FRA explicitly mandates that the Sub-Divisional Level Committee (SDLC) or District Level Committee (DLC) provide a formal, written statement of reasons for any rejection. Van Nyaya enforces an audit trail logging mandatory written grounds, generates formal claimant notices, and initiates an active 90-day statutory appeal window counter with automated escalation warnings.
 
 ---
 
 ## Key Features
 
-* **Supervised Anomaly Screening:** Gradient-boosted classifiers trained on cross-source features to flag high-risk structural anomalies across area declarations, survey records, and family claim histories[cite: 1].
+* **Pre-2005 Temporal Spatial Verification:** Historical satellite raster processing to confirm historical agricultural clearing or dwelling prior to the statutory cutoff date.
+* **Supervised Anomaly Screening:** Gradient-boosted classifiers trained on cross-source features to flag unusual structural anomalies across area declarations, survey records, and family claim histories[cite: 1].
 * **Local SHAP Attribution:** Granular XAI decomposition pinpointing exactly which factors (e.g., spatial overlap percentage, area mismatch) influenced the model risk score[cite: 1].
 * **GIS Cadastral Twin:** Automated calculation of claimed versus satellite-derived polygon areas, self-intersection tests, and boundary overlap metrics against protected zones and neighboring claims[cite: 1].
+* **Rejection Justification & Appeal Desk:** Mandatory structured justification capture on rejections with automated 90-day statutory appeal window tracking and dispatch logs.
 * **Document OCR Engine:** Optical text and table extraction across physical Form A/B applications, revenue records, and Gram Sabha resolutions to compute documentary consistency scores[cite: 1].
 * **Interactive Official Review Dashboard:** Role-based portal featuring split-screen cadastral maps, interactive SHAP force bars, document inspection panels, and one-click audit feedback capture[cite: 1].
 
@@ -27,14 +43,14 @@ By combining automated GIS boundary intersection telemetry, supervised gradient-
 
 | Layer | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Frontend & UX** | `React 18`, `TypeScript`, `Tailwind CSS`, `Lucide Icons` | Officer verification portal, multi-claim review dashboard, dynamic risk indicators, and feedback desk[cite: 1]. |
-| **Spatial & Interactive Maps** | `Leaflet`, `React-Leaflet`, `OpenStreetMap / Sat Imagery` | Dual-layer cadastral boundary viewer, live polygon overlap rendering, and survey demarcations[cite: 1]. |
-| **Backend Gateway** | `FastAPI`, `Uvicorn`, `Pydantic v2` | High-throughput asynchronous REST gateway, schema validation, and inter-service routing[cite: 1]. |
+| **Frontend & UX** | `React 18`, `TypeScript`, `Tailwind CSS`, `Lucide Icons` | Officer verification portal, multi-claim review dashboard, dynamic risk indicators, and appeal desk[cite: 1]. |
+| **Spatial & Interactive Maps** | `Leaflet`, `React-Leaflet`, `Landsat/Sentinel API` | Dual-layer cadastral boundary viewer, temporal satellite comparison (pre-2005 vs. present), and survey demarcations[cite: 1]. |
+| **Backend Gateway** | `FastAPI`, `Uvicorn`, `Pydantic v2` | High-throughput asynchronous REST gateway, schema validation, appeal lifecycle timers, and inter-service routing[cite: 1]. |
 | **Machine Learning Core** | `XGBoost`, `Scikit-Learn`, `LightGBM`, `Joblib` | Supervised anomaly risk probability estimation and tabular claim classification pipelines[cite: 1]. |
 | **Explainable AI (XAI)** | `SHAP (TreeExplainer)`, `NumPy` | Local feature attribution, Shapley value calculations, and quantitative risk decomposition[cite: 1]. |
-| **Spatial & GIS Engine** | `GeoPandas`, `Shapely`, `PyProj` | Boundary polygon validation, CRS coordinate transformation, and multi-claim intersection calculations[cite: 1]. |
+| **Spatial & GIS Engine** | `GeoPandas`, `Shapely`, `Rasterio`, `PyProj` | Boundary polygon validation, raster temporal comparisons, CRS coordinate transformations, and spatial intersections[cite: 1]. |
 | **Document Processing** | `PyMuPDF`, `PaddleOCR / Tesseract` | Scanned document intake, multi-page text extraction, and cross-source field matching[cite: 1]. |
-| **Database & Persistence** | `SQLAlchemy 2.0`, `PostgreSQL / PostGIS` (SQLite dev) | Relational claim storage, spatial boundary indices, officer audit logs, and retraining feedback[cite: 1]. |
+| **Database & Persistence** | `SQLAlchemy 2.0`, `PostgreSQL / PostGIS` (SQLite dev) | Relational claim storage, spatial boundary indices, appeal tracking ledgers, and officer audit logs[cite: 1]. |
 
 ---
 
@@ -61,15 +77,17 @@ fra-ai-system/
 │   │   ├── assets/               # Branding assets, vector logos, and base icons
 │   │   ├── components/           # Reusable UI widgets[cite: 1]
 │   │   │   ├── common/           # Navbar, Sidebar, StatCard, LoadingSkeleton
-│   │   │   ├── map/              # Leaflet GIS viewer, OverlapPolygonLayer, GeoJSONControls
+│   │   │   ├── map/              # Leaflet GIS viewer, OverlapLayer, HistoricalSatelliteSlider
 │   │   │   ├── audit/            # RiskBandBadge, SHAPBarChart, GroundedSummaryCard
+│   │   │   ├── appeals/          # AppealCountdownClock, WrittenReasonModal, EscalationBanner
 │   │   │   └── documents/        # DocumentViewer, OCRExtractPanel, EvidenceInspector
 │   │   ├── pages/                # High-level route views[cite: 1]
-│   │   │   ├── Dashboard.tsx     # District officer overview, triage queue, status filters
-│   │   │   ├── ClaimReview.tsx   # Split-screen map, ML anomaly assessment, evidence panel
+│   │   │   ├── Dashboard.tsx     # District triage queue, status filters, appeal deadlines
+│   │   │   ├── ClaimReview.tsx   # Split map (pre-2005 vs today), ML anomaly assessment, evidence
+│   │   │   ├── Rejections.tsx    # Formal written reasons, 90-day tracker, claimant dispatch logs
 │   │   │   └── FeedbackLogs.tsx  # Historical officer determinations and model audit logs
 │   │   ├── services/             # API client bridge (Axios hooks for backend & ML proxy)[cite: 1]
-│   │   ├── hooks/                # Custom React hooks (useClaims, useSpatialLayer, useAIAnalysis)[cite: 1]
+│   │   ├── hooks/                # Custom React hooks (useClaims, useSpatialLayer, useAppeals)[cite: 1]
 │   │   ├── types/                # Strict TypeScript interfaces matching backend Pydantic schemas[cite: 1]
 │   │   ├── utils/                # Coordinate conversions, date formatters, geo-calc helpers[cite: 1]
 │   │   ├── App.tsx               # Root app layout, route router, and notification toaster
@@ -80,11 +98,11 @@ fra-ai-system/
 │
 ├── backend/                      # Orchestration & business logic gateway (Port 5000)[cite: 1]
 │   ├── app/
-│   │   ├── api/                  # REST routes (auth, claims, documents, GIS, AI, feedback)[cite: 1]
+│   │   ├── api/                  # REST routes (auth, claims, documents, GIS, AI, appeals, feedback)[cite: 1]
 │   │   ├── database/             # Connection pooling, migrations, and seed scripts[cite: 1]
-│   │   ├── models/               # SQLAlchemy models (User, Claim, Prediction, Feedback)[cite: 1]
-│   │   ├── schemas/              # Pydantic v2 input/output payload schemas[cite: 1]
-│   │   ├── services/             # Domain logic (GIS, document OCR, feature aggregation)[cite: 1]
+│   │   ├── models/               # SQLAlchemy models (User, Claim, Prediction, Appeal, Feedback)[cite: 1]
+│   │   ├── schemas/              # Pydantic v2 schemas (Claim, RejectionReason, AppealPayload)[cite: 1]
+│   │   ├── services/             # Domain logic (GIS, pre-2005 raster service, appeal manager)[cite: 1]
 │   │   └── main.py               # Gateway entrypoint & middleware configuration[cite: 1]
 │   └── requirements.txt          # Gateway Python dependencies[cite: 1]
 │
